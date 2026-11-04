@@ -34,6 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `;
 
+        sendMessage("+55186454578798", messageText)
+
         chatMessages.appendChild(messageElement);
         messageInput.value = "";
         scrollToBottom();
@@ -46,6 +48,40 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 1500);
     });
+
+
+    async function sendMessage(friend, msg){
+
+        const URL = "http://10.111.9.65:3001/chat"; // Ajuste a rota conforme seu backend
+        const userData = {
+            remetente:"+5512345",
+            telefone: friend,
+            msg: msg
+        }
+
+        try {
+            const req = await fetch(URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userData)
+            });
+
+            const res = await req.json();
+
+            if (req.ok) {
+                console.log("mensagem enviada")
+            } else {
+                console.log("Sua mensagem não pode ser enviada")
+            }
+        } catch (error) {
+            console.error("Erro no cadastro:", error);
+            alert("Falha na conexão com o servidor!");
+        }
+
+
+    }
 
     // Sanitização simples para evitar xss
     function escapeHTML(text) {

@@ -46,7 +46,7 @@ btnLogin.addEventListener("click", async (e) => {
 
 // 4. Requisição à API
 async function fetchAPI() {
-    const URL = "http://10.111.9.102:3001/auth";
+    const URL = "http://10.111.9.65:3001/auth";
 
     // Captura o DDI selecionado (+55, +1, etc.)
     const ddiSelected = document.querySelector('input[name="ddi"]:checked')?.value || "";
@@ -67,7 +67,15 @@ async function fetchAPI() {
         const res = await req.json();
 
         if (req.ok) {
-            console.log("Autenticado com sucesso:", res);
+            
+            if(res.isAuth)
+            {
+                location.href = "chat.html"
+            }
+            else{
+                location.href = "index.html"
+            }
+
             // Redirecionar usuário ou salvar token aqui
         } else {
             console.log("Erro na resposta:", res);

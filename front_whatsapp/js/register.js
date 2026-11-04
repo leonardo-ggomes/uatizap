@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     async function registerUser(userData) {
-        const URL = "http://10.111.9.102:3001/register"; // Ajuste a rota conforme seu backend
+        const URL = "http://10.111.9.65:3001/register"; // Ajuste a rota conforme seu backend
 
         try {
             const req = await fetch(URL, {
