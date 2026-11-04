@@ -96,15 +96,7 @@ body {
     overflow-y: auto;
 }
 
-.chat-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    gap: 15px;
-    cursor: pointer;
-    border-bottom: 1px solid #f5f6f6;
-    transition: background 0.2s;
-}
+
 
 .chat-item:hover {
     background-color: #f5f6f6;
@@ -294,4 +286,90 @@ body {
 
 .send-btn:hover {
     color: #00a884;
+}
+
+.chat-item {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #f5f6f6;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    outline: none;
+}
+
+/* --- TOAST NOTIFICATION (Notificação na tela) --- */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 320px;
+    pointer-events: none;
+}
+
+.toast-card {
+    background-color: #202c33;
+    color: #e9edef;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    border-left: 4px solid #00a884;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: toastSlideIn 0.3s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast-card:hover {
+    background-color: #2a3942;
+}
+
+.toast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: #00a884;
+}
+
+.toast-header i {
+    margin-right: 6px;
+}
+
+.toast-header small {
+    font-size: 11px;
+    color: #8696a0;
+    font-weight: normal;
+}
+
+.toast-body {
+    font-size: 13px;
+    color: #d1d7db;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@keyframes toastSlideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }

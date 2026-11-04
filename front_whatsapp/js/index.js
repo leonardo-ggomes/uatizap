@@ -70,6 +70,7 @@ async function fetchAPI() {
             
             if(res.isAuth)
             {
+                localStorage.setItem("meu_numero",telefoneCompleto)
                 location.href = "chat.html"
             }
             else{

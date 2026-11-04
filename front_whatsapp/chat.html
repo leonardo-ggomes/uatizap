@@ -31,46 +31,7 @@
             </div>
 
             <!-- Lista de Contatos -->
-            <div class="chat-list">
-                <div class="chat-item active">
-                    <img src="https://i.pravatar.cc/150?img=32" class="avatar" alt="Maria Silva">
-                    <div class="chat-info">
-                        <div class="chat-info-header">
-                            <span class="chat-name">Maria Silva</span>
-                            <span class="chat-time">14:32</span>
-                        </div>
-                        <div class="chat-last-msg">
-                            <p>Tudo certo! Nos falamos mais tarde.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="chat-item">
-                    <img src="https://i.pravatar.cc/150?img=12" class="avatar" alt="João Pedro">
-                    <div class="chat-info">
-                        <div class="chat-info-header">
-                            <span class="chat-name">João Pedro</span>
-                            <span class="chat-time">11:15</span>
-                        </div>
-                        <div class="chat-last-msg">
-                            <p>Você viu aquele documento?</p>
-                            <span class="unread-badge">2</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="chat-item">
-                    <img src="https://i.pravatar.cc/150?img=47" class="avatar" alt="Grupo do Projeto">
-                    <div class="chat-info">
-                        <div class="chat-info-header">
-                            <span class="chat-name">Grupo do Projeto 🚀</span>
-                            <span class="chat-time">Ontem</span>
-                        </div>
-                        <div class="chat-last-msg">
-                            <p><strong>Carlos:</strong> Código enviado para revisão!</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="chat-list" id="chat-list">    
             </div>
         </aside>
 
@@ -79,10 +40,10 @@
             <!-- Cabeçalho do Chat -->
             <header class="chat-header">
                 <div class="chat-user-details">
-                    <img src="https://i.pravatar.cc/150?img=32" class="avatar" alt="Maria Silva">
+                    <img id="chat-header-avatar" src="https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg" class="avatar" alt="Foto do Contato">
                     <div class="user-status">
-                        <h2>Maria Silva</h2>
-                        <span>online</span>
+                        <h2 id="chat-header-name">Selecione uma conversa</h2>
+                        <span id="chat-header-status"></span>
                     </div>
                 </div>
                 <div class="header-actions">
@@ -93,33 +54,7 @@
 
             <!-- Mensagens -->
             <div class="chat-messages" id="chat-messages">
-                <div class="message-date"><span>HOJE</span></div>
-
-                <!-- Mensagem Recebida -->
-                <div class="message incoming">
-                    <div class="message-body">
-                        <p>Olá! Conseguiu testar a tela de login?</p>
-                        <span class="message-time">14:30</span>
-                    </div>
-                </div>
-
-                <!-- Mensagem Enviada -->
-                <div class="message outgoing">
-                    <div class="message-body">
-                        <p>Sim! Adicionei o passo da senha e ficou perfeito.</p>
-                        <span class="message-time">14:31 <i class="fa-solid fa-check-double read"></i></span>
-                    </div>
-                </div>
-
-                <!-- Mensagem Recebida -->
-                <div class="message incoming">
-                    <div class="message-body">
-                        <p>Tudo certo! Nos falamos mais tarde.</p>
-                        <span class="message-time">14:32</span>
-                    </div>
-                </div>
-
-                
+                <div class="message-date"><span>Selecione um contato para iniciar a conversa</span></div>
             </div>
 
             <!-- Rodapé / Campo de Entrada -->
