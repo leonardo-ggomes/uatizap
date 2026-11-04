@@ -76,24 +76,62 @@ router.post("/chat", async (req, res) => {
         
         const cmd = "CALL `sp_enviar_mensagem`(?, ?, ?)";
         const [result] = await conn.query(cmd, [remetente, telefone, msg]);
-        console.log(result)
-        if (result.length > 0) {
+        
+        if (result.affectedRows == 0) {
             return res.status(400).json({
                 created: false,
-                message: "Este número de telefone já está cadastrado."
+                message: "Esta não pode ser enviada"
             });
         }   
 
         return res.status(201).json({
             created: true,
-            message: "Utilizador cadastrado com sucesso!"
+            message: "Mensagem Enviada"
         });
 
     } catch (error) {
         console.error("Erro no cadastro:", error);
         return res.status(500).json({
             created: false,
-            message: "Erro no servidor ao tentar realizar o cadastro."
+            message: "Falha ao enviar a mensagem"
+        });
+    }
+});
+
+router.post("/message", async (req, res) => {
+    const { remetente, destinatario } = req.body;
+
+    // Validação simples dos dados recebidos
+    if (!remetente || !destinatario) {
+        return res.status(400).json({
+            created: false,
+            message: "Todos os campos (remetente, destinatario) são obrigatórios."
+        });
+    }
+
+    try {
+        
+        const cmd = "CALL `sp_obter_historico`(?, ?)";
+        const [result] = await conn.query(cmd, [remetente, destinatario]);
+       
+        if (result[0].length == 0) {
+            return res.status(400).json({
+                created: false,
+                message: "Nenhuma mensagem"
+            });
+        }   
+
+        return res.status(201).json({
+            created: true,
+            history: result[0],
+            message: "Historico Enviado"
+        });
+
+    } catch (error) {
+        console.error("Erro no cadastro:", error);
+        return res.status(500).json({
+            created: false,
+            message: "Falha ao enviar o historico"
         });
     }
 });

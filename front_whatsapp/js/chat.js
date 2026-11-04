@@ -72,6 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (req.ok) {
                 console.log("mensagem enviada")
+
+                receiveMessage()
+
             } else {
                 console.log("Sua mensagem não pode ser enviada")
             }
@@ -88,6 +91,57 @@ document.addEventListener("DOMContentLoaded", () => {
         const div = document.createElement('div');
         div.innerText = text;
         return div.innerHTML;
+    }
+
+    async function receiveMessage(){
+         const URL = "http://10.111.9.65:3001/message"; // Ajuste a rota conforme seu backend
+        const userData = {
+            remetente:"+5512345",
+            destinatario: "+55186454578798",
+        }
+
+        try {
+            const req = await fetch(URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userData)
+            });
+
+            const res = await req.json();
+
+            if (req.ok) {
+
+                if(res.created)
+                {
+                     const history = res.history
+                     
+
+                     for(let msg of history){
+                       const elChat = `
+                         <div class="message incoming">
+                          <div class="message-body">
+                                <p>${msg.mensagem}</p>
+                                <span class="message-time">14:30 <i class="fa-solid fa-check-double read"></i></span>
+                            </div>
+                        </div>                        
+                       `
+
+                       chatMessages.insertAdjacentHTML("beforeend", elChat)
+                     }      
+                     
+                     
+                }
+
+               
+            } else {
+                console.log("Sua mensagem não pode ser enviada")
+            }
+        } catch (error) {
+            console.error("Erro no cadastro:", error);
+            alert("Falha na conexão com o servidor!");
+        }
     }
 
     scrollToBottom();
