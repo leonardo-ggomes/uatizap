@@ -20,7 +20,6 @@ router.post("/auth", async (req, res) => {
     })
 });
 
-
 router.post("/register", async (req, res) => {
     const { nome, telefone, senha } = req.body;
 
@@ -61,6 +60,46 @@ router.post("/register", async (req, res) => {
         });
     }
 });
+
+router.post("/chat", async (req, res) => {
+    const { remetente, telefone, msg } = req.body;
+
+    // Validação simples dos dados recebidos
+    if (!telefone || !msg) {
+        return res.status(400).json({
+            created: false,
+            message: "Todos os campos (telefone, mensagem) são obrigatórios."
+        });
+    }
+
+    try {
+        
+        const cmd = "CALL `sp_enviar_mensagem`(?, ?, ?)";
+        const [result] = await conn.query(cmd, [remetente, telefone, msg]);
+        console.log(result)
+        if (result.length > 0) {
+            return res.status(400).json({
+                created: false,
+                message: "Este número de telefone já está cadastrado."
+            });
+        }   
+
+        return res.status(201).json({
+            created: true,
+            message: "Utilizador cadastrado com sucesso!"
+        });
+
+    } catch (error) {
+        console.error("Erro no cadastro:", error);
+        return res.status(500).json({
+            created: false,
+            message: "Erro no servidor ao tentar realizar o cadastro."
+        });
+    }
+});
+
+
+
 
 //Exportamos as rotas definidas no arquivo.
 module.exports = router;
