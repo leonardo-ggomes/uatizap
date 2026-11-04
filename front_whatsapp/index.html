@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <title>Autenticação - Uatizap</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- PASSO 1: TELEFONE -->
+        <div id="step-1" class="step-wrapper">
+            <div>
+                <img class="img" src="public/img/phone-call.png" alt="Icone de chamada">
+            </div>
+            <div class="display">
+                <h1>Seu número para entrar</h1>
+            </div>
+            <div class="label-custom">
+                <div>
+                    <label for="tel">Telefone</label>
+                </div>
+                <div>
+                    <span>Passo 1 de 2</span>
+                </div>
+            </div>
+            <div class="group-input-custom">
+                <!-- Select Customizado sem JS -->
+                <div class="select-wrapper" tabindex="0">
+                    <input type="radio" name="ddi" id="br" value="+55" checked>
+                    <input type="radio" name="ddi" id="us" value="+1">
+
+                    <div class="select-trigger">
+                        <div class="selected-option br-selected">
+                            <img src="https://flagcdn.com/w40/br.png" alt="Brasil">
+                            <span>+55</span>
+                        </div>
+                        <div class="selected-option us-selected">
+                            <img src="https://flagcdn.com/w40/us.png" alt="EUA">
+                            <span>+1</span>
+                        </div>
+                        <span class="chevron"></span>
+                    </div>
+
+                    <div class="select-options">
+                        <label for="br" class="option br-option">
+                            <img src="https://flagcdn.com/w40/br.png" alt="Brasil">
+                            <span>+55 (BR)</span>
+                        </label>
+                        <label for="us" class="option us-option">
+                            <img src="https://flagcdn.com/w40/us.png" alt="EUA">
+                            <span>+1 (US)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Campo de Telefone -->
+                <input class="input-custom" type="tel" name="tel" id="tel" placeholder="19 98511634" required>
+            </div>
+            <div class="group-radio-custom">
+                <input type="checkbox" name="isConnected" id="isConnected">
+                <label for="isConnected">Continuar conectado</label>
+            </div>
+
+            <div class="group-btn-custom">
+                <button type="button" id="btn-next-1" class="btn-custom">Continuar</button>
+            </div>
+
+            <div class="group">
+                <a href="#">Precisa de ajuda?</a>
+            </div>
+            <div class="group">
+                <a href="/register.html">Criar conta</a>
+            </div>
+        </div>
+
+        <!-- PASSO 2: SENHA -->
+        <div id="step-2" class="step-wrapper hidden">
+            <div>
+                <img class="img" src="public/img/phone-call.png" alt="Icone de chamada">
+            </div>
+            <div class="display">
+                <h1>Informe sua senha</h1>
+            </div>
+            <div class="label-custom">
+                <div>
+                    <label for="password">Senha</label>
+                </div>
+                <div>
+                    <span>Passo 2 de 2</span>
+                </div>
+            </div>
+            
+            <div class="group-input-custom">
+                <input class="input-custom" type="password" name="password" id="password" placeholder="Sua senha">
+            </div>
+
+            <div class="group-btn-custom">
+                <button type="submit" id="btn-login" class="btn-custom">Entrar</button>
+            </div>
+
+            <div class="group">
+                <button type="button" id="btn-back" class="btn-link">Voltar ao passo anterior</button>
+            </div>
+            <div class="group">
+                <a href="#">Esqueceu a senha?</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

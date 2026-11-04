@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    height: 100%;
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    width: 80px;
+    height: 80px;
+}
+
+.label-custom {
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.display{
+    margin: 50px;
+}
+
+.group-input-custom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    width: 25%;
+    border-radius: 10px;
+    border: 1px solid black;
+    height: 50px;
+    margin: 5px;
+    padding: 10px;
+}
+
+.group-radio-custom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    width: 25%;
+    height: 50px;
+    margin: 5px;
+    padding: 10px;
+    font-size: 20px;
+
+}
+
+.group-btn-custom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 25%;
+    margin: 5px;
+    padding: 10px;
+    font-size: 20px;
+
+}
+
+
+.input-custom {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+#flags {
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+
+.btn-custom {
+    width: 100%;
+    height: 50px;
+    color: white;
+    border: 1px solid #59A145;
+    border-radius: 10px;
+    background-color: #59A145;
+    cursor: pointer;
+}
+
+.group {
+    margin: 10px;
+}
+
+.group a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Ajuste na classe existente do seu projeto */
+.group-input-custom {
+    position: relative;
+}
+
+/* --- ESTRUTURA DO SELECT CSS PURO --- */
+.select-wrapper {
+    position: relative;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Oculta os radio buttons nativos */
+.select-wrapper input[type="radio"] {
+    display: none;
+}
+
+/* Estilo do gatilho visível */
+.select-trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-right: 8px;
+    border-right: 1px solid #ddd;
+}
+
+/* Esconde todas as opções do gatilho por padrão */
+.selected-option {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    font-size: 18px;
+}
+
+.selected-option img,
+.option img {
+    width: 22px;
+    height: 15px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+/* --- REGRAS DE ALTERNÂNCIA COM CSS :has() --- */
+/* Exibe apenas o país cujo radio correspondente estiver marcado */
+.select-wrapper:has(#br:checked) .br-selected {
+    display: flex;
+}
+
+.select-wrapper:has(#us:checked) .us-selected {
+    display: flex;
+}
+
+/* Seta (Chevron) */
+.chevron {
+    border: solid #666;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+}
+
+/* Gira a seta quando o menu está focado/aberto */
+.select-wrapper:focus-within .chevron {
+    transform: rotate(-135deg);
+}
+
+/* --- MENU DROPDOWN --- */
+.select-options {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: -10px;
+    width: 150px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+/* Exibe o menu dropdown ao focar no elemento */
+.select-wrapper:focus-within .select-options {
+    display: block;
+}
+
+/* Estilo de cada linha de opção */
+.option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.option:hover {
+    background-color: #f0f0f0;
+}
+
+/* Destaque da opção selecionada na lista */
+.select-wrapper:has(#br:checked) .br-option,
+.select-wrapper:has(#us:checked) .us-option {
+    background-color: #e8f5e9;
+    font-weight: bold;
+}
+
+/* Estrutura dos Passos */
+.step-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Ocultar elementos */
+.hidden {
+    display: none !important;
+}
+
+/* Botão em formato de link para voltar */
+.btn-link {
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: inherit;
+    text-decoration: underline;
+}
+
+.btn-link:hover {
+    color: #59A145;
+}

@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: "Roboto", sans-serif;
+    background-color: #ffffff;
+}
+
+.container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.img {
+    width: 70px;
+    height: 70px;
+}
+
+.display {
+    margin: 20px 0 30px 0;
+    text-align: center;
+}
+
+.display h1 {
+    font-size: 26px;
+    color: #111b21;
+}
+
+.form-container {
+    width: 28%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.field-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.field-wrapper label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid black;
+    height: 50px;
+    padding: 10px;
+}
+
+.group-input-custom {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid black;
+    height: 50px;
+    padding: 10px;
+}
+
+.input-custom {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+/* --- ESTRUTURA DO SELECT CSS PURO --- */
+.select-wrapper {
+    position: relative;
+    outline: none;
+    cursor: pointer;
+}
+
+.select-wrapper input[type="radio"] {
+    display: none;
+}
+
+.select-trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-right: 8px;
+    border-right: 1px solid #ddd;
+}
+
+.selected-option {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+}
+
+.selected-option img, .option img {
+    width: 22px;
+    height: 15px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.select-wrapper:has(#br:checked) .br-selected,
+.select-wrapper:has(#us:checked) .us-selected {
+    display: flex;
+}
+
+.chevron {
+    border: solid #666;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+}
+
+.select-wrapper:focus-within .chevron {
+    transform: rotate(-135deg);
+}
+
+.select-options {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: -10px;
+    width: 140px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.select-wrapper:focus-within .select-options {
+    display: block;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #f0f0f0;
+}
+
+.group-btn-custom {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-custom {
+    width: 100%;
+    height: 50px;
+    color: white;
+    border: 1px solid #59A145;
+    border-radius: 10px;
+    background-color: #59A145;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-custom:hover {
+    background-color: #4a8839;
+}
+
+.group {
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.group a {
+    text-decoration: none;
+    color: #59A145;
+    margin-left: 5px;
+}
