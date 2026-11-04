@@ -64,79 +64,101 @@ router.post("/register", async (req, res) => {
 router.post("/chat", async (req, res) => {
     const { remetente, telefone, msg } = req.body;
 
-    // Validação simples dos dados recebidos
-    if (!telefone || !msg) {
+    if (!remetente || !telefone || !msg?.trim()) {
         return res.status(400).json({
             created: false,
-            message: "Todos os campos (telefone, mensagem) são obrigatórios."
+            message: "Dados obrigatórios não informados."
         });
     }
 
     try {
-        
-        const cmd = "CALL `sp_enviar_mensagem`(?, ?, ?)";
-        const [result] = await conn.query(cmd, [remetente, telefone, msg]);
-        
-        if (result.affectedRows == 0) {
-            return res.status(400).json({
-                created: false,
-                message: "Esta não pode ser enviada"
-            });
-        }   
+        const cmd = "CALL sp_enviar_mensagem(?, ?, ?)";
 
-        return res.status(201).json({
+        await conn.query(cmd, [remetente, telefone, msg.trim()]);
+
+        return res.status(200).json({
             created: true,
-            message: "Mensagem Enviada"
+            message: "Mensagem enviada com sucesso."
         });
 
     } catch (error) {
-        console.error("Erro no cadastro:", error);
+        console.error("Erro ao enviar mensagem:", error);
+
         return res.status(500).json({
             created: false,
-            message: "Falha ao enviar a mensagem"
+            message: "Falha ao enviar mensagem."
         });
     }
 });
+
 
 router.post("/message", async (req, res) => {
     const { remetente, destinatario } = req.body;
 
-    // Validação simples dos dados recebidos
     if (!remetente || !destinatario) {
         return res.status(400).json({
             created: false,
-            message: "Todos os campos (remetente, destinatario) são obrigatórios."
+            message: "Remetente e destinatário são obrigatórios."
         });
     }
 
     try {
-        
-        const cmd = "CALL `sp_obter_historico`(?, ?)";
-        const [result] = await conn.query(cmd, [remetente, destinatario]);
-       
-        if (result[0].length == 0) {
-            return res.status(400).json({
-                created: false,
-                message: "Nenhuma mensagem"
-            });
-        }   
+        const cmd = "CALL sp_obter_historico(?, ?)";
 
-        return res.status(201).json({
+        const [result] = await conn.query(cmd, [
+            remetente,
+            destinatario
+        ]);
+
+        // Primeiro conjunto de resultados da procedure
+        const history = Array.isArray(result[0])
+            ? result[0]
+            : [];
+
+        return res.status(200).json({
             created: true,
-            history: result[0],
-            message: "Historico Enviado"
+            history,
+            message: "Histórico carregado."
         });
 
     } catch (error) {
-        console.error("Erro no cadastro:", error);
+        console.error("Erro ao obter histórico:", error);
+
         return res.status(500).json({
             created: false,
-            message: "Falha ao enviar o historico"
+            history: [],
+            message: "Falha ao obter histórico."
         });
     }
 });
 
 
+router.get("/contacts", async (req, res) => {
+    try {
+        const cmd = `
+            SELECT apelido, telefone
+            FROM utilizadores
+            ORDER BY apelido
+        `;
+
+        const [result] = await conn.query(cmd);
+
+        return res.status(200).json({
+            created: true,
+            contacts: result,
+            message: "Lista de contatos."
+        });
+
+    } catch (error) {
+        console.error("Erro ao listar contatos:", error);
+
+        return res.status(500).json({
+            created: false,
+            contacts: [],
+            message: "Falha ao carregar contatos."
+        });
+    }
+});
 
 
 //Exportamos as rotas definidas no arquivo.
